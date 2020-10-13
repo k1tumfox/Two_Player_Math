@@ -29,6 +29,3 @@ Player
 p1 = Player.new
 p2 = Player.new
 
-def game
-  
-end
