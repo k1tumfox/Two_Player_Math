@@ -3,8 +3,8 @@ require_relative './player'
 class Game
 
   def initialize
-    @player1 = Player.new("Sage")
-    @player2 = Player.new("Crimson")
+    @player1 = Player.new("Player One")
+    @player2 = Player.new("Player Two")
     @players=[@player1, @player2]
     @round=1
   end
@@ -14,23 +14,26 @@ class Game
     
     a = rand(20) + 1
     b = rand(20) + 1
-    puts "What does #{a} plus #{b} equal?"
+    puts "#{question_for.name}: What does #{a} plus #{b} equal?"
     player_answer = gets.chomp.to_i
     
+    sleep 1
+
     if (player_answer != a + b) #if player answers incorrectly, -1 to lives
       @players.first.incorrect
     else
-      'Good stuff!'
+      puts 'Good stuff!'
     end  
 
     @players.rotate! #other player's turn
-    
   end
 
   def score
     puts " ------------------ "
     @players.each{|player| puts "#{player.name}: #{player.lose? ? 'LOSES' : player.lives}"}   
     puts " ------------------ "    
+
+    sleep 1
   end
 
   def winner
@@ -47,9 +50,7 @@ class Game
       question
       score
     end
-
     winner
-
   end
 
 end
